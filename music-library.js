@@ -8,6 +8,9 @@ MusicLibrary.prototype.addPlaylist = function(playlist) {
   this.playlist.push(playlist);
 };
 
+MusicLibrary.prototype.printPlaylist = function() {
+
+}
 
 
 function Playlist (name) {
@@ -48,8 +51,20 @@ Playlist.prototype.numberOfTracks = function() {
 
 function Track(name, rating, length) {
   this.name = name;
-  this.rating = rating;
-  this.length = length;
+
+  if (Number.isInteger(rating) && rating > 0 && rating < 6) {
+    this.rating = rating;
+  } else {
+    console.log(`Track: ${name}. Rating should be an integer from 1 to 5.`)
+    return "Rating should be an integer from 1 to 5";
+  }
+
+  if (Number.isInteger(length)) {
+    this.length = length;
+  } else {
+    console.log(`Track: ${name}. Length of the track should be an integer.`);
+    return "Length of the track should be an integer";
+  }
 }
 
 let myMusicLib = new MusicLibrary("Happy", "Jingfan");
