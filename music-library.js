@@ -1,15 +1,29 @@
 function MusicLibrary (name, creator) {
   this.name = name;
   this.creator = creator;
-  this.playlist = [];
+  this.playlists = [];
 }
 
 MusicLibrary.prototype.addPlaylist = function(playlist) {
-  this.playlist.push(playlist);
+  this.playlists.push(playlist);
 };
 
 MusicLibrary.prototype.printPlaylist = function() {
+  for (let playlist of this.playlists) {
+    console.log(playlist);
+  }
+}
 
+MusicLibrary.prototype.printTracksOfPlaylist = function(playlistName) {
+  for (let playlist of this.playlists) {
+    if (playlist.name === playlistName) {
+      console.log(playlistName + "\n", playlist.tracks);
+      return playlist.tracks;
+    }
+  }
+
+  console.log(playlistName, "does not exist.");
+  return `${playlistName} does not exist`;
 }
 
 
@@ -122,6 +136,12 @@ console.log(playlist3.overallRating());
 console.log(playlist1.numberOfTracks());
 console.log(playlist2.numberOfTracks());
 console.log(playlist3.numberOfTracks());
+
+myMusicLib.printPlaylist();
+myMusicLib.printTracksOfPlaylist("playlist1");
+myMusicLib.printTracksOfPlaylist("playlist2");
+myMusicLib.printTracksOfPlaylist("playlist3");
+myMusicLib.printTracksOfPlaylist("playlist4");
 
 
 console.log(myMusicLib);
